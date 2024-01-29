@@ -37,7 +37,7 @@ const Dashboard = () => {
       const authToken = getAuthToken();
 
       const response = await axios.get(
-        "https://arrowhead-v6yn.onrender.com//notes",
+        "https://arrowhead-v6yn.onrender.com/notes",
         {
           headers: { Authorization: `Bearer ${authToken}` },
         }
@@ -58,7 +58,7 @@ const Dashboard = () => {
     try {
       // Creating a new note
       const response = await axios.post(
-        "https://arrowhead-v6yn.onrender.com//note",
+        "https://arrowhead-v6yn.onrender.com/note",
         newNote,
         {
           headers: { Authorization: `Bearer ${authToken}` },
@@ -80,7 +80,7 @@ const Dashboard = () => {
     try {
       // Updating a note
       const response = await axios.put(
-        `https://arrowhead-v6yn.onrender.com//note`,
+        `https://arrowhead-v6yn.onrender.com/note`,
         { id: noteId, newContent: updateNoteTexts[noteId] },
         { headers: { Authorization: `Bearer ${authToken}` } }
       );
@@ -101,7 +101,7 @@ const Dashboard = () => {
     try {
       // Deleting a note
       const response = await axios.delete(
-        `https://arrowhead-v6yn.onrender.com//note/${noteId}`,
+        `https://arrowhead-v6yn.onrender.com/note/${noteId}`,
         { headers: { Authorization: `Bearer ${authToken}` } }
       );
 

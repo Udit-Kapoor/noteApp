@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        "https://arrowhead-v6yn.onrender.com//login",
+        "https://arrowhead-v6yn.onrender.com/login",
         {
           email,
           password,
@@ -65,7 +65,7 @@ const Login = () => {
   const handleSignup = async () => {
     try {
       const response = await axios.post(
-        "https://arrowhead-v6yn.onrender.com//signup",
+        "https://arrowhead-v6yn.onrender.com/signup",
         {
           email,
           password,

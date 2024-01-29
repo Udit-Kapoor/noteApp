@@ -36,9 +36,12 @@ const Dashboard = () => {
       // Include the authToken in the request headers
       const authToken = getAuthToken();
 
-      const response = await axios.get("http://localhost:4000/notes", {
-        headers: { Authorization: `Bearer ${authToken}` },
-      });
+      const response = await axios.get(
+        "https://arrowhead-v6yn.onrender.com//notes",
+        {
+          headers: { Authorization: `Bearer ${authToken}` },
+        }
+      );
 
       setNotes(response.data.notes);
       setNewNote({ title: "", content: "" });
@@ -54,9 +57,13 @@ const Dashboard = () => {
     console.log(authToken);
     try {
       // Creating a new note
-      const response = await axios.post("http://localhost:4000/note", newNote, {
-        headers: { Authorization: `Bearer ${authToken}` },
-      });
+      const response = await axios.post(
+        "https://arrowhead-v6yn.onrender.com//note",
+        newNote,
+        {
+          headers: { Authorization: `Bearer ${authToken}` },
+        }
+      );
 
       console.log("New note created:", response.data);
 
@@ -73,8 +80,8 @@ const Dashboard = () => {
     try {
       // Updating a note
       const response = await axios.put(
-        `http://localhost:4000/note`,
-        { id : noteId, newContent: updateNoteTexts[noteId]},
+        `https://arrowhead-v6yn.onrender.com//note`,
+        { id: noteId, newContent: updateNoteTexts[noteId] },
         { headers: { Authorization: `Bearer ${authToken}` } }
       );
 
@@ -94,7 +101,7 @@ const Dashboard = () => {
     try {
       // Deleting a note
       const response = await axios.delete(
-        `http://localhost:4000/note/${noteId}`,
+        `https://arrowhead-v6yn.onrender.com//note/${noteId}`,
         { headers: { Authorization: `Bearer ${authToken}` } }
       );
 
@@ -127,7 +134,7 @@ const Dashboard = () => {
   };
 
   const getAuthToken = () => {
-    const cookieString = document.cookie || ""; 
+    const cookieString = document.cookie || "";
     const authTokenCookie = cookieString
       .split("; ")
       .find((cookie) => cookie.startsWith("authToken="));

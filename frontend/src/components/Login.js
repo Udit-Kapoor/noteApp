@@ -11,10 +11,13 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://arrowhead-v6yn.onrender.com//login",
+        {
+          email,
+          password,
+        }
+      );
 
       if (response.data.status) {
         document.cookie = `authToken=${response.data.token}; path=/; secure; SameSite=None`;
@@ -29,22 +32,22 @@ const Login = () => {
         history.push("/dashboard");
       } else {
         console.error("Login failed:", response.data);
-        toast.error('Invalid credentials. Please try again.', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+        toast.error("Invalid credentials. Please try again.", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
 
-      // Reset input values on failed login
-      setUsername('');
-      setPassword('');
+        // Reset input values on failed login
+        setUsername("");
+        setPassword("");
       }
     } catch (error) {
-        toast.error('Invalid credentials. Please try again.', {
-        position: 'top-right',
+      toast.error("Invalid credentials. Please try again.", {
+        position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -53,18 +56,21 @@ const Login = () => {
       });
 
       // Reset input values on failed login
-      setUsername('');
-      setPassword('');
+      setUsername("");
+      setPassword("");
       console.error("Login failed:", error.response.data);
-    }  
+    }
   };
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/signup", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://arrowhead-v6yn.onrender.com//signup",
+        {
+          email,
+          password,
+        }
+      );
 
       if (response.data.status) {
         document.cookie = `authToken=${response.data.token}; path=/; secure; SameSite=None`;
@@ -131,7 +137,7 @@ const Login = () => {
           Login
         </button>
         <button
-          style={{marginTop: "10px"}}
+          style={{ marginTop: "10px" }}
           type="button"
           onClick={handleSignup}
         >

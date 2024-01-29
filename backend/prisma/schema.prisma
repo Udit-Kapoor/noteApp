@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Add models 
+
+model User {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  notes     Note[]
+}
+
+//Set TTL on isActive
+model Note {
+  id        String      @id @default(uuid()) @db.Uuid
+  userId    String      @db.Uuid
+  title     String
+  content   String
+  isActive  Boolean     @default(true)
+  timestamp DateTime    @default(now())
+  user      User        @relation(fields: [userId], references: [id] ,onDelete: Cascade)
+  versions  Version[]
+}
+
+model Version {
+  id        String   @id @default(uuid()) @db.Uuid
+  noteId    String   @db.Uuid
+  content   String
+  timestamp DateTime @default(now())
+  note      Note     @relation(fields: [noteId], references: [id] , onDelete: Cascade)
+}
